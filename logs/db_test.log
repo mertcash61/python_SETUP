@@ -1,0 +1,5 @@
+2025-04-18 21:35:06,571 - INFO - Veritabanına bağlanılıyor...
+2025-04-18 21:35:06,787 - INFO - package: mysql.connector.plugins
+2025-04-18 21:35:06,787 - INFO - plugin_name: caching_sha2_password
+2025-04-18 21:35:06,787 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2025-04-18 21:35:06,791 - ERROR - Veritabanı bağlantı hatası: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
