@@ -1,0 +1,5 @@
+{
+    "apiUrl": "https://api.example.com",
+    "timeout": 30,
+    "retryAttempts": 3
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Uygulaması</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Setup Uygulaması</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Ayarlar</h2>
+            <form id="settingsForm">
+                <label for="apiUrl">API URL:</label>
+                <input type="text" id="apiUrl" name="apiUrl" required>
+                <button type="submit">Ayarları Kaydet</button>
+            </form>
+            <button id="saveButton" class="styled-button">Ayarları JSON Olarak Kaydet</button>
+            <div id="feedback" class="feedback-message" style="display: none;"></div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

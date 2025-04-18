@@ -1,13 +1,19 @@
 using System;
+using System.Windows.Forms;
 
-namespace CSharpApp
+namespace android.cs
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
-            Console.WriteLine("C# Android Uygulaması");
-            // Uygulama mantığı burada yer alacak
+            // Windows Forms uygulaması için gerekli ayarları yap
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            
+            // Ana formu başlat
+            Application.Run(new Form1());
         }
     }
 }

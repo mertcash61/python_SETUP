@@ -14,6 +14,7 @@ setup(
         'pandas',     # Örnek bağımlılık
         'requests',   # HTTP istekleri için bağımlılık
         'matplotlib',  # Veri görselleştirme için bağımlılık
+        'scikit-learn' # Makine öğrenimi için bağımlılık
     ],
     classifiers=[  # Paket sınıflandırmaları
         'Programming Language :: Python :: 3',

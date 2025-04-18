@@ -1,7 +1,6 @@
 #include <cstdio>  // Standart girdi/çıktı işlemleri için
 #include <json/json.h>  // JSON işleme kütüphanesi
-
-#include <curl/curl.h>
+#include <curl/curl.h>  // libcurl kütüphanesi
 
 // JSON formatında veri göndermek için bir fonksiyon
 void sendJsonData(const std::string& jsonData) {

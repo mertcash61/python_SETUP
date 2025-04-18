@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+import json  # JSON dosyası ile çalışmak için
 
 class AIDataAnalysis:
     """Yapay zeka destekli veri analizi için sınıf."""
@@ -32,6 +33,13 @@ class AIDataAnalysis:
         plt.grid()
         plt.show()
 
+        # Regresyon sonuçlarını kaydetme
+        results = {
+            "coefficients": model.coef_.tolist(),
+            "intercept": model.intercept_.tolist()
+        }
+        AIDataAnalysis.save_results(results)
+
     @staticmethod
     def analyze_data(df):
         """Veri analizi yapma."""
@@ -39,3 +47,10 @@ class AIDataAnalysis:
         print(df.describe())
         print("\nKorelasyon Matrisi:")
         print(df.corr())
+
+    @staticmethod
+    def save_results(results):
+        """Regresyon sonuçlarını JSON dosyasına kaydetme."""
+        with open('regression_results.json', 'w') as json_file:
+            json.dump(results, json_file, indent=4)
+        print("Regresyon sonuçları 'regression_results.json' dosyasına kaydedildi.")
