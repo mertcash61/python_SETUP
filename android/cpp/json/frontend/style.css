@@ -1,69 +1,297 @@
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --primary-color: #4285f4;
+    --primary-dark: #3367d6;
+    --accent-color: #fbbc05;
+    --text-color: #333;
+    --text-light: #777;
+    --border-color: #ddd;
+    --bg-color: #f9f9f9;
+    --success-color: #34a853;
+    --error-color: #ea4335;
+    --warning-color: #fbbc05;
+    --info-color: #4285f4;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 header {
-    background: #35424a;
+    background: var(--primary-color);
     color: #ffffff;
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.version {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 0.8;
 }
 
 main {
     padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.setup-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Sekme stileri */
+.tabs {
+    display: flex;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    background-color: #eee;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* İlerleme çubuğu */
+.progress-bar {
+    height: 6px;
+    background-color: #eee;
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.5s ease-in-out;
+}
+
+/* Sekme içeriği */
+.tab-content {
+    display: none;
+    padding: 25px;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1, h2 {
-    color: #35424a;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-form {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+h2 {
+    font-size: 22px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Form stilleri */
+.setup-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
 }
 
-input[type="text"] {
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+input[type="text"],
+input[type="number"],
+select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
+    font-size: 15px;
+    transition: border 0.3s ease;
 }
 
-/* Buton stil ayarları */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+}
+
+.theme-options {
+    display: flex;
+    gap: 20px;
+}
+
+/* Buton stilleri */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
 .styled-button {
-    background: #35424a;
-    color: #ffffff;
+    background: #efefef;
+    color: var(--text-color);
     border: none;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
-    display: inline-block;
-    margin-top: 10px;
-    width: 100%;
-    transition: background 0.3s;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .styled-button:hover {
-    background: #2c3e50;
+    background: #e4e4e4;
+}
+
+.primary-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.next-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.next-button:hover {
+    background: var(--primary-dark);
 }
 
 /* Geri bildirim mesajı stili */
 .feedback-message {
     margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 0;
+    padding: 15px;
     border-radius: 5px;
     background-color: #e7f3fe;
-    color: #31708f;
+    color: var(--info-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Footer stileri */
+footer {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 15px;
+    color: var(--text-light);
+    font-size: 14px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        border-bottom: 1px solid var(--border-color);
+        border-left: 3px solid transparent;
+    }
+    
+    .tab-button.active {
+        border-bottom: 1px solid var(--border-color);
+        border-left: 3px solid var(--primary-color);
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .styled-button {
+        width: 100%;
+    }
+    
+    .version {
+        position: static;
+        transform: none;
+        display: block;
+        margin-top: 5px;
+    }
 }

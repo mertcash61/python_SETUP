@@ -51,13 +51,25 @@ class HTTPController:
         Returns:
             Dict[str, Any]: Yanıt verisi
         """
-        url = self._build_url(endpoint)
-        return self.requests_handler.handle_request(
-            self.session.get,
-            url,
-            params=params,
-            timeout=self.timeout
-        )
+        try:
+            # Endpoint'i temel URL ile birleştir
+            full_url = self._build_url(endpoint)
+            self.logger.info(f"GET isteği gönderiliyor: {full_url}")
+            
+            response = self.session.get(
+                full_url,
+                params=params,
+                timeout=self.timeout,
+                verify=self.verify_ssl
+            )
+            response.raise_for_status()
+            
+            self.logger.info(f"GET isteği başarılı: {response.status_code}")
+            return response.json()
+            
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"GET isteği başarısız: {str(e)}")
+            raise
         
     def post(self, endpoint: str, data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
@@ -70,13 +82,25 @@ class HTTPController:
         Returns:
             Dict[str, Any]: Yanıt verisi
         """
-        url = self._build_url(endpoint)
-        return self.requests_handler.handle_request(
-            self.session.post,
-            url,
-            json=data,
-            timeout=self.timeout
-        )
+        try:
+            # Endpoint'i temel URL ile birleştir
+            full_url = self._build_url(endpoint)
+            self.logger.info(f"POST isteği gönderiliyor: {full_url}")
+            
+            response = self.session.post(
+                full_url,
+                json=data,
+                timeout=self.timeout,
+                verify=self.verify_ssl
+            )
+            response.raise_for_status()
+            
+            self.logger.info(f"POST isteği başarılı: {response.status_code}")
+            return response.json()
+            
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"POST isteği başarısız: {str(e)}")
+            raise
         
     def put(self, endpoint: str, data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
@@ -107,12 +131,23 @@ class HTTPController:
         Returns:
             Dict[str, Any]: Yanıt verisi
         """
-        url = self._build_url(endpoint)
-        return self.requests_handler.handle_request(
-            self.session.delete,
-            url,
-            timeout=self.timeout
-        )
+        try:
+            url = self._build_url(endpoint)
+            self.logger.info(f"DELETE isteği gönderiliyor: {url}")
+            
+            response = self.session.delete(
+                url,
+                timeout=self.timeout,
+                verify=self.verify_ssl
+            )
+            response.raise_for_status()
+            
+            self.logger.info(f"DELETE isteği başarılı: {response.status_code}")
+            return response.json()
+            
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"DELETE isteği başarısız: {str(e)}")
+            raise
         
     def set_headers(self, headers: Dict[str, str]) -> None:
         """
@@ -121,16 +156,32 @@ class HTTPController:
         Args:
             headers (Dict[str, str]): Başlık bilgileri
         """
-        self.session.headers.update(headers)
+        try:
+            self.session.headers.update(headers)
+            self.logger.info(f"Başlıklar güncellendi: {headers}")
+        except Exception as e:
+            self.logger.error(f"Başlık güncelleme hatası: {str(e)}")
+            raise
         
     def clear_headers(self) -> None:
         """
         Tüm istek başlıklarını temizler
         """
-        self.session.headers.clear()
+        try:
+            self.session.headers.clear()
+            self.logger.info("Tüm başlıklar temizlendi")
+        except Exception as e:
+            self.logger.error(f"Başlık temizleme hatası: {str(e)}")
+            raise
         
     def close(self) -> None:
         """
         HTTP oturumunu kapatır
         """
-        self.session.close()
+        try:
+            if self.session:
+                self.session.close()
+                self.logger.info("HTTP oturumu kapatıldı")
+        except Exception as e:
+            self.logger.error(f"Oturum kapatma hatası: {str(e)}")
+            raise

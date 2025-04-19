@@ -3,6 +3,7 @@ import sys
 import subprocess
 from typing import Optional, List, Dict
 from pathlib import Path
+import logging
 
 class VirtualEnvironment:
     """
@@ -22,6 +23,7 @@ class VirtualEnvironment:
         self.venv_path = Path(venv_path).absolute()
         self.python_path = self.venv_path / "Scripts" / "python.exe"
         self.pip_path = self.venv_path / "Scripts" / "pip.exe"
+        self.logger = logging.getLogger(__name__)
         
     def create(self, python_path: Optional[str] = None) -> bool:
         """
@@ -122,9 +124,15 @@ class VirtualEnvironment:
             bool: İşlem başarılı ise True
         """
         try:
-            subprocess.run(["deactivate"], shell=True, check=True)
-            return True
-        except subprocess.CalledProcessError:
+            if 'VIRTUAL_ENV' in os.environ:
+                subprocess.run(['deactivate'], shell=True, check=True)
+                self.logger.info("Sanal ortam deaktif edildi.")
+                return True
+            else:
+                self.logger.warning("Sanal ortam zaten deaktif.")
+                return False
+        except subprocess.CalledProcessError as e:
+            self.logger.error(f"Sanal ortam deaktif edilemedi: {str(e)}")
             return False
             
     def exists(self) -> bool:
@@ -134,4 +142,39 @@ class VirtualEnvironment:
         Returns:
             bool: Sanal ortam varsa True
         """
-        return self.venv_path.exists() and self.python_path.exists()
+        try:
+            venv_exists = self.venv_path.exists() and self.python_path.exists()
+            if not venv_exists:
+                self.logger.warning("Sanal ortam veya Python yolu bulunamadı.")
+            return venv_exists
+        except Exception as e:
+            self.logger.error(f"Sanal ortam kontrolü sırasında hata: {str(e)}")
+            return False
+
+    def set_environment_variables(self) -> None:
+        """
+        Sanal ortam için gerekli ortam değişkenlerini ayarlar
+        """
+        try:
+            os.environ['VIRTUAL_ENV'] = str(self.venv_path)
+            os.environ['PATH'] = f"{self.venv_path / 'Scripts'};{os.environ['PATH']}"
+            self.logger.info("Ortam değişkenleri ayarlandı.")
+        except Exception as e:
+            self.logger.error(f"Ortam değişkenleri ayarlanamadı: {str(e)}")
+
+    def clear_environment_variables(self) -> None:
+        """
+        Sanal ortam için ayarlanan ortam değişkenlerini temizler
+        """
+        try:
+            if 'VIRTUAL_ENV' in os.environ:
+                del os.environ['VIRTUAL_ENV']
+                # PATH değişkeninden sanal ortam yolunu kaldır
+                path_parts = os.environ['PATH'].split(';')
+                path_parts = [p for p in path_parts if str(self.venv_path / 'Scripts') not in p]
+                os.environ['PATH'] = ';'.join(path_parts)
+                self.logger.info("Ortam değişkenleri temizlendi.")
+            else:
+                self.logger.warning("Ortam değişkenleri zaten temiz.")
+        except Exception as e:
+            self.logger.error(f"Ortam değişkenleri temizlenemedi: {str(e)}")
