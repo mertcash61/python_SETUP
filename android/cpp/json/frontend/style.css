@@ -1,15 +1,33 @@
 :root {
-    --primary-color: #4285f4;
-    --primary-dark: #3367d6;
-    --accent-color: #fbbc05;
-    --text-color: #333;
-    --text-light: #777;
-    --border-color: #ddd;
-    --bg-color: #f9f9f9;
-    --success-color: #34a853;
-    --error-color: #ea4335;
-    --warning-color: #fbbc05;
-    --info-color: #4285f4;
+    --primary-color: #4285f4; /* Açık tema için ana renk */
+    --primary-dark: #3367d6; /* Açık tema için koyu ana renk */
+    --accent-color: #fbbc05; /* Vurgu rengi */
+    --text-color: #333; /* Koyu metin rengi */
+    --text-light: #777; /* Açık metin rengi */
+    --border-color: #ddd; /* Açık tema için kenar rengi */
+    --bg-color: #f9f9f9; /* Açık tema için arka plan rengi */
+    --success-color: #34a853; /* Başarı rengi */
+    --error-color: #ea4335; /* Hata rengi */
+    --warning-color: #fbbc05; /* Uyarı rengi */
+    --info-color: #4285f4; /* Bilgi rengi */
+}
+
+.light-mode {
+    --primary-color: #ffffff; /* Açık tema için ana renk */
+    --primary-dark: #f0f0f0; /* Açık tema için koyu ana renk */
+    --accent-color: #fbbc05; /* Vurgu rengi */
+    --text-color: #333333; /* Koyu metin rengi */
+    --text-light: #777777; /* Açık metin rengi */
+    --border-color: #dddddd; /* Açık tema için kenar rengi */
+    --bg-color: #f9f9f9; /* Açık tema için arka plan rengi */
+    --success-color: #34a853; /* Başarı rengi */
+    --error-color: #ea4335; /* Hata rengi */
+    --warning-color: #fbbc05; /* Uyarı rengi */
+    --info-color: #4285f4; /* Bilgi rengi */
+}
+
+.dark-mode {
+    /* Koyu tema için stiller kaldırıldı */
 }
 
 * {
@@ -192,7 +210,7 @@ select:focus {
 }
 
 .styled-button {
-    background: #efefef;
+    background: var(--primary-color);
     color: var(--text-color);
     border: none;
     padding: 12px 20px;
@@ -207,7 +225,7 @@ select:focus {
 }
 
 .styled-button:hover {
-    background: #e4e4e4;
+    background: var(--primary-dark);
 }
 
 .primary-button {

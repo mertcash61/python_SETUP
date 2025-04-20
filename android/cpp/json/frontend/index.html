@@ -11,6 +11,16 @@
     <header>
         <h1>Setup Uygulaması</h1>
         <div class="version">Versiyon 1.0.2</div>
+        <div class="theme-selector">
+            <label for="language">Dil Seçimi:</label>
+            <select id="language" name="language" onchange="changeLanguage(this.value)">
+                <option value="tr" {{ app()->getLocale() == 'tr' ? 'selected' : '' }}>Türkçe</option>
+                <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>İngilizce</option>
+                <option value="de" {{ app()->getLocale() == 'de' ? 'selected' : '' }}>Almanca</option>
+                <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>İspanyolca</option>
+                <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Fransızca</option>
+            </select>
+        </div>
     </header>
     
     <main>
@@ -35,10 +45,12 @@
                     
                     <div class="form-group">
                         <label for="language">Dil Seçimi:</label>
-                        <select id="language" name="language">
+                        <select id="language" name="language" onchange="changeLanguage(this.value)">
                             <option value="tr">Türkçe</option>
                             <option value="en">İngilizce</option>
                             <option value="de">Almanca</option>
+                            <option value="es">İspanyolca</option>
+                            <option value="fr">Fransızca</option>
                         </select>
                     </div>
                     
@@ -47,9 +59,6 @@
                         <div class="theme-options">
                             <input type="radio" id="lightTheme" name="theme" value="light" checked>
                             <label for="lightTheme">Açık</label>
-                            
-                            <input type="radio" id="darkTheme" name="theme" value="dark">
-                            <label for="darkTheme">Koyu</label>
                         </div>
                     </div>
                     

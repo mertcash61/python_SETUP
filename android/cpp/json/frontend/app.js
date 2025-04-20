@@ -1,6 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Setup Uygulaması Başlatıldı");
     
+    // Sayfa yüklendiğinde temayı kontrol et
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+    // Tema değişikliğini uygula
+    document.getElementById('theme').addEventListener('change', function() {
+        if (this.value === 'dark') {
+            localStorage.setItem('theme', 'dark'); // Temayı yerel depolamada sakla
+        } else {
+            localStorage.setItem('theme', 'light'); // Temayı yerel depolamada sakla
+        }
+    });
+    
     // Sekme değiştirme fonksiyonu
     function switchTab(tabId) {
         // Tüm sekme içeriklerini gizle
@@ -184,17 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.disabled = false;
                 this.innerHTML = 'Ayarları Kaydet <i class="fas fa-save"></i>';
             });
-    });
-    
-    // Tema değişikliğini uygula
-    document.querySelectorAll('input[name="theme"]').forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.value === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-        });
     });
     
     // Input doğrulaması için olay dinleyiciler
