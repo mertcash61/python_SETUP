@@ -313,3 +313,18 @@ footer {
         margin-top: 5px;
     }
 }
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: var(--text-light);
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: var(--primary-color);
+}
