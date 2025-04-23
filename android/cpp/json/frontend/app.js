@@ -10,12 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Tema değişikliğini uygula
-    document.getElementById('theme').addEventListener('change', function() {
-        if (this.value === 'dark') {
-            localStorage.setItem('theme', 'dark'); // Temayı yerel depolamada sakla
-        } else {
-            localStorage.setItem('theme', 'light'); // Temayı yerel depolamada sakla
-        }
+    document.querySelectorAll('input[name="theme"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'dark') {
+                localStorage.setItem('theme', 'dark'); // Temayı yerel depolamada sakla
+                document.body.classList.add('dark-mode');
+            } else {
+                localStorage.setItem('theme', 'light'); // Temayı yerel depolamada sakla
+                document.body.classList.remove('dark-mode');
+            }
+        });
     });
     
     // Sekme değiştirme fonksiyonu

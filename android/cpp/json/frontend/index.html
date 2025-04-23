@@ -24,6 +24,25 @@
     </header>
     
     <main>
+        <div class="login-container">
+            <h2>Giriş Yap</h2>
+            <form id="loginForm" class="setup-form">
+                <div class="form-group">
+                    <label for="email">E-posta:</label>
+                    <input type="email" id="email" name="email" required placeholder="E-posta adresinizi girin" aria-label="E-posta">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+                    <input type="password" id="password" name="password" required placeholder="Şifrenizi girin" aria-label="Şifre">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="styled-button">Giriş Yap <i class="fas fa-sign-in-alt"></i></button>
+                </div>
+            </form>
+        </div>
+
         <div class="setup-container">
             <div class="tabs">
                 <button class="tab-button active" data-tab="general">Genel Ayarlar</button>
@@ -59,6 +78,8 @@
                         <div class="theme-options">
                             <input type="radio" id="lightTheme" name="theme" value="light" checked>
                             <label for="lightTheme">Açık</label>
+                            <input type="radio" id="darkTheme" name="theme" value="dark">
+                            <label for="darkTheme">Koyu</label>
                         </div>
                     </div>
                     
@@ -107,8 +128,15 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="cacheSize">Önbellek Boyutu (MB):</label>
-                        <input type="number" id="cacheSize" name="cacheSize" value="100" min="50" max="500" required>
+                        <label for="cacheSize">Önbellek Boyutu:</label>
+                        <div class="cache-size-options">
+                            <input type="number" id="cacheSize" name="cacheSize" value="100" min="50" max="500" required>
+                            <select id="cacheUnit" name="cacheUnit">
+                                <option value="MB">MB</option>
+                                <option value="GB">GB</option>
+                                <option value="TB">TB</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group checkbox-group">
@@ -153,5 +181,7 @@
     </footer>
     
     <script src="app.js"></script>
+    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

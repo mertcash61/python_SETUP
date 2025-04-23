@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace android.cs
+namespace YourNamespace // Uygulamanızın ad alanını buraya ekleyin
 {
     static class Program
     {
@@ -13,7 +13,7 @@ namespace android.cs
             Application.SetCompatibleTextRenderingDefault(false);
             
             // Ana formu başlat
-            Application.Run(new Form1());
+            Application.Run(new Form1()); // Form1, kullanıcı giriş kaydı ve faktöriyel hesaplama içeren form
         }
     }
 }

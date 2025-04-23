@@ -1,27 +1,5 @@
-// app.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Setup Uygulaması Başlatıldı");
-    
-    // Sayfa yüklendiğinde temayı kontrol et
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-
-    // Tema değişikliğini uygula
-    document.querySelectorAll('input[name="theme"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.value === 'dark') {
-                localStorage.setItem('theme', 'dark'); // Temayı yerel depolamada sakla
-                document.body.classList.add('dark-mode');
-            } else {
-                localStorage.setItem('theme', 'light'); // Temayı yerel depolamada sakla
-                document.body.classList.remove('dark-mode');
-            }
-        });
-    });
+    console.log("JavaScript Android Uygulaması");
 
     // Örnek veri (gerçek verilerle değiştirin)
     const data = [

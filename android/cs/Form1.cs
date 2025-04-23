@@ -20,37 +20,14 @@ namespace android.cs
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            // Kullanıcıdan girdi alma
-            if (int.TryParse(txtInput.Text, out int number) && number >= 0)
+            if (int.TryParse(txtInput.Text, out int n) && n >= 0) // Kullanıcıdan sayı al
             {
-                // Hesaplamaları yapma
-                long factorial = Factorial(number);
-                int square = number * number;
-                int cube = number * number * number;
-
-                // Seçilen hesaplama türüne göre sonuçları gösterme
-                string calculationType = comboBoxCalculationType.SelectedItem.ToString();
-                string resultMessage = $"Girdiğiniz sayı: {number}\n";
-
-                switch (calculationType)
-                {
-                    case nameof(EnumController.Factorial):
-                        resultMessage += $"Sayının faktöriyeli: {factorial}";
-                        break;
-                    case nameof(EnumController.Square):
-                        resultMessage += $"Sayının karesi: {square}";
-                        break;
-                    case nameof(EnumController.Cube):
-                        resultMessage += $"Sayının küpü: {cube}";
-                        break;
-                }
-
-                lblResult.Text = resultMessage;
+                long result = Factorial(n); // Faktöriyel hesapla
+                lblResult.Text = $"Faktöriyel: {result}"; // Sonucu göster
             }
             else
             {
-                // Geçersiz girdi durumu
-                MessageBox.Show("Geçersiz bir sayı girdiniz. Lütfen pozitif bir tam sayı girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lütfen geçerli bir pozitif tam sayı girin."); // Hata mesajı
             }
         }
 

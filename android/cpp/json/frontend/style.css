@@ -16,7 +16,7 @@
     --primary-color: #ffffff; /* Açık tema için ana renk */
     --primary-dark: #f0f0f0; /* Açık tema için koyu ana renk */
     --accent-color: #fbbc05; /* Vurgu rengi */
-    --text-color: #333333; /* Koyu metin rengi */
+    --text-color: #555555; /* Koyu metin rengi */
     --text-light: #777777; /* Açık metin rengi */
     --border-color: #dddddd; /* Açık tema için kenar rengi */
     --bg-color: #f9f9f9; /* Açık tema için arka plan rengi */
@@ -27,7 +27,17 @@
 }
 
 .dark-mode {
-    /* Koyu tema için stiller kaldırıldı */
+    --primary-color: #444; /* Koyu tema için ana renk */
+    --primary-dark: #333; /* Koyu tema için koyu ana renk */
+    --accent-color: #fbbc05; /* Vurgu rengi */
+    --text-color: #e0e0e0; /* Açık metin rengi */
+    --text-light: #bbb; /* Açık metin rengi */
+    --border-color: #555; /* Koyu tema için kenar rengi */
+    --bg-color: #535353; /* Koyu tema için arka plan rengi */
+    --success-color: #34a853; /* Başarı rengi */
+    --error-color: #ea4335; /* Hata rengi */
+    --warning-color: #fbbc05; /* Uyarı rengi */
+    --info-color: #4285f4; /* Bilgi rengi */
 }
 
 * {
@@ -104,6 +114,7 @@ main {
 .tab-button.active {
     color: var(--primary-color);
     border-bottom: 3px solid var(--primary-color);
+    font-weight: bold; /* Aktif sekmeyi vurgulamak için kalın yazı */
 }
 
 /* İlerleme çubuğu */
@@ -161,11 +172,28 @@ h2 {
     margin-bottom: 20px;
 }
 
-label {
+.form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
     color: var(--text-color);
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
 }
 
 .checkbox-group {
@@ -178,8 +206,6 @@ label {
     margin-bottom: 0;
 }
 
-input[type="text"],
-input[type="number"],
 select {
     width: 100%;
     padding: 12px;
@@ -189,8 +215,6 @@ select {
     transition: border 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
 select:focus {
     border-color: var(--primary-color);
     outline: none;
@@ -327,4 +351,68 @@ footer {
 
 .social-media a:hover {
     color: var(--primary-color);
+}
+
+.cache-size-options {
+    display: flex;
+    align-items: center;
+}
+
+.cache-size-options input {
+    flex: 1;
+    margin-right: 10px; /* Seçim alanı ile giriş alanı arasında boşluk */
+    padding: 10px; /* Giriş alanına iç boşluk ekleyin */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.cache-size-options select {
+    padding: 10px; /* Seçim alanına iç boşluk ekleyin */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #fff; /* Arka plan rengi */
+    cursor: pointer; /* İmleci göster */
+}
+
+.login-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.login-container .form-group {
+    margin-bottom: 20px;
+}
+
+.login-container .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border 0.3s ease;
+}
+
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
 }

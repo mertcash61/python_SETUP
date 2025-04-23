@@ -32,6 +32,25 @@ namespace android.cs
             CalculationHistory = new List<string>(); // Hesaplama geçmişi
         }
 
+        // Kullanıcı giriş bilgilerini güncelleyen metot
+        public void UpdateUserInput(int inputNumber, string calculationType)
+        {
+            LastInputNumber = inputNumber; // Kullanıcının girdiği sayıyı güncelle
+            LastUsedCalculationType = calculationType; // Kullanıcının kullandığı hesaplama türünü güncelle
+            LastOpened = DateTime.Now; // Uygulamanın en son açılış tarihini güncelle
+            CalculationHistory.Add($"Giriş: {inputNumber}, Hesaplama Türü: {calculationType}"); // Hesaplama geçmişine ekle
+        }
+
+        // Kullanıcı ayarlarını sıfırlayan metot
+        public void ResetSettings()
+        {
+            LastUsedCalculationType = "Factorial"; // Varsayılan hesaplama türü
+            LastInputNumber = 0; // Varsayılan giriş numarası
+            PreferredTheme = "Aydınlık"; // Varsayılan tema
+            LastOpened = DateTime.Now; // Uygulama ilk açıldığında tarih
+            CalculationHistory.Clear(); // Hesaplama geçmişini temizle
+        }
+
         // Diğer ayarları ekleyebilirsiniz
     }
 }
